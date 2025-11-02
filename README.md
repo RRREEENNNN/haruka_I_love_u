@@ -1,1 +1,113 @@
 # haruka_I_love_u
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤我爱你❤</title>
+<style>
+  body {
+    background-color: #ffeef5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: '微软雅黑', sans-serif;
+  }
+  button {
+    background-color: #ff8fcf;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+  }
+  button:hover {
+    background-color: #ff66b2;
+    transform: scale(1.05);
+  }
+  .popup {
+    position: fixed;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: fadeInOut 6s forwards;
+  }
+  @keyframes fadeInOut {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+</style>
+</head>
+<body>
+
+<h1>❤我爱你❤</h1>
+<button onclick="startPopups()">开始弹窗</button>
+
+<script>
+const messages = [
+  "宝宝睡了吗，要幸福哦😊",
+  "今天有没有好好吃饭💪",
+  "喜欢我送你的戒指吗🌟",
+  "没关系一定要开心✨",
+  "你知道我喜欢你吗🌈",
+  "其实我有很多话想给你说☕",
+  "我想去看F1💭",
+  "一起去迪士尼💖",
+  "BMW M4🍀",
+  "今天有没有比昨天更开心一点🌱"
+];
+
+const colors = [
+  'lightpink', 'skyblue', 'lightgreen', 'lavender', 'lightyellow', 'plum',
+  'coral', 'bisque', 'aquamarine', 'mistyrose', 'honeydew', 'peachpuff',
+  'paleturquoise', 'lavenderblush', 'oldlace', 'lemonchiffon', 'lightcyan'
+];
+
+// 随机选择数组中的一项
+function randomChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// 显示弹窗
+function showPopup() {
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  // 在消息前加上 ftx: 前缀
+  popup.textContent = "ftx: " + randomChoice(messages);
+  popup.style.backgroundColor = randomChoice(colors);
+  
+  const x = Math.random() * (window.innerWidth - 200);
+  const y = Math.random() * (window.innerHeight - 100);
+  
+  popup.style.left = `${x}px`;
+  popup.style.top = `${y}px`;
+  
+  document.body.appendChild(popup);
+  
+  setTimeout(() => popup.remove(), 6000); // 6秒后自动消失
+}
+
+// 开始弹窗循环
+function startPopups() {
+  let count = 0;
+  const total = 100; // 弹窗数量（可改成 350）
+  const interval = setInterval(() => {
+    showPopup();
+    count++;
+    if (count >= total) clearInterval(interval);
+  }, 150);
+}
+</script>
+
+</body>
+</html>
